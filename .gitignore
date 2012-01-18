@@ -1,0 +1,9 @@
+.reap/digest
+.yardoc
+log
+pkg
+ri
+tmp
+site
+web
+work/trash

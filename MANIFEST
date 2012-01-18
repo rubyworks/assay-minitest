@@ -1,0 +1,10 @@
+#!mast .ruby bin demo qed lib test [A-Z][A-Z]*
+.ruby
+lib/assay/minitest.rb
+lib/assay-minitest/assertions.rb
+lib/assay-minitest/extensions.rb
+lib/assay-minitest.rb
+lib/assay-minitest.yml
+HISTORY.rdoc
+README.rdoc
+LICENSE.rdoc

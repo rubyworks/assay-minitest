@@ -1,0 +1,4 @@
+Assay MiniTest defines a set of MiniTest-compatible assertion methods which
+depend on Assay's assertion classes. This allows developers to change
+test frameworks without having to change a slew of previously
+defined assertions.
