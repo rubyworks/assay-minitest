@@ -2,11 +2,11 @@
 
 == Assay MiniTest
 
-Copyright:: (c) 2012 RubyWorks
-License:: BSD-2-Clause
-Website:: http://rubyworks.github.com/assay-testunit
+    Copyright (c) 2012 Rubyworks. All rights reserved.
 
-    Copyright 2012 Rubyworks. All rights reserved.
+    Distributed in accordance with the BSD-2-Clause license.
+
+    http://rubyworks.github.com/assay-testunit
 
 == BSD-2-Clause License
 
