@@ -6,11 +6,11 @@
     include ::Assay::Extensions
   end
 
-== EqualityAssay
+== must_equal
 
   1.must_equal(1)
 
-  expect ::EqualityAssay do
+  expect ::EqualAssay do
     1.must_equal(2)
   end
 
@@ -22,7 +22,7 @@
     false.must_be_true
   end
 
-== FalseAssay
+== must_be_false
 
   false.must_be_false
 
@@ -30,7 +30,7 @@
     true.must_be_false
   end
 
-== NilAssay
+== must_be_nil
 
   nil.must_be_nil
 
@@ -38,7 +38,7 @@
     true.must_be_nil
   end
 
-== WithinAssay
+== must_be_within_delta
 
   1.must_be_within_delta(2, 1.5)
 
@@ -48,7 +48,7 @@
 
   1.wont_be_within_delta(2, 0.5)
 
-== MatchAssay
+== must_match
 
   "abc".must_match(/a/)
 
@@ -58,17 +58,17 @@
 
   "abc".wont_match(/g/)
 
-== SameAssay
+== must_eql
 
   1.must_eql(1)
 
-  expect ::SameAssay do
+  expect ::EqualityAssay do
     1.must_eql(1.0)
   end
 
   1.wont_eql(1.0)
 
-== IdentityAssay
+== must_be_same_as
 
   :a.must_be_same_as(:a)
 
@@ -78,7 +78,7 @@
 
   :a.wont_be_same_as('a')
 
-== InstanceAssay
+== must_be_instance_of
 
   1.must_be_instance_of(Fixnum)
 
@@ -88,7 +88,7 @@
 
   1.wont_be_instance_of(String)
 
-== KindAssay
+== must_kind_of
 
   1.must_be_kind_of(Integer)
 
@@ -98,7 +98,7 @@
 
   1.wont_be_kind_of(String)
 
-== RaiseAssay
+== must_raise
 
   procedure = lambda{ raise ::ArgumentError }
 
@@ -110,17 +110,17 @@
 
   procedure.wont_raise(::TypeError)
 
-== ResponseAssay
+== must_respond_to
 
   "string".must_respond_to(:upcase)
 
-  expect ::ResponseAssay do
+  expect ::RespondAssay do
     "string".must_respond_to(:not_a_method)
   end
 
   "string".wont_respond_to(:not_a_method)
 
-== ExecutionAssay
+== must_satisfy
 
   5.must_satisfy{ |x| x > 3 }
 
@@ -130,7 +130,7 @@
 
   5.wont_satisfy{ |x| x < 3 }
 
-== ThrowAssay
+== must_throw
 
   procedure = lambda{ throw :foo }
 
