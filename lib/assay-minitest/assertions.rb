@@ -214,6 +214,7 @@ module Assay::MiniTest
       KindAssay.refute!(obj, cls, :message=>msg, :backtrace=>caller)
     end
 
+    #
     # Passes if object matches pattern using `#=~` method.
     #
     #   assert_match(/\d+/, 'five, 6, seven')
@@ -222,6 +223,7 @@ module Assay::MiniTest
       MatchAssay.assert!(string, pattern, :message=>msg, :backtrace=>caller)
     end
 
+    #
     # Passes if object does not match pattern using `#=~` method.
     #
     #   assert_no_match(/two/, 'one 2 three')
@@ -230,6 +232,7 @@ module Assay::MiniTest
       MatchAssay.refute!(string, pattern, :message=>msg, :backtrace=>caller)
     end
 
+    #
     # Passes if object does not match pattern using `#!~` method.
     #
     #   assert_no_match(/two/, 'one 2 three')
@@ -238,6 +241,7 @@ module Assay::MiniTest
       NoMatchAssay.assert!(string, pattern, :message=>msg, :backtrace=>caller)
     end
 
+    #
     # Passed if object is +nil+.
     #
     #   assert_nil(nil)
@@ -246,6 +250,7 @@ module Assay::MiniTest
       NilAssay.assert!(exp, :message=>msg, :backtrace=>caller)
     end
 
+    #
     # Passed if object is not +nil+.
     #
     #   refute_nil(true)
@@ -255,7 +260,9 @@ module Assay::MiniTest
     end
 
     #
+    # Passes it +predicate+ sent to object returns postively.
     #
+    #   assert_predicate(10, :even?)
     #
     def assert_predicate(object, predicate, message = nil) 
       ExecutionAssay.assert!(:message=>message) do
@@ -264,7 +271,9 @@ module Assay::MiniTest
     end
 
     #
+    # Passes it +predicate+ sent to object returns negatively.
     #
+    #   refute_predicate(10, :odd?)
     #
     def refute_predicate(object, predicate, message = nil) 
       ExecutionAssay.refute!(:message=>message) do
@@ -376,21 +385,6 @@ module Assay::MiniTest
     def refute_nothing_raised(msg=nil, &block)
       RaiseAssay.assert!(Exception, :message=>msg, :backtrace=>caller, &block)
     end
-
-    #
-    # Passes if the block raises a given exception.
-    #
-    #   assert_raise_kind_of Exception do
-    #     raise 'Boom!!!'
-    #   end
-    #
-    def assert_raise_kind_of(exception_class, msg=nil, &procedure)
-      RaiseAssay.assert!(exception_class, :message=>msg, :backtrace=>caller, &procedure)
-    end
-
-    #
-    #def assert_raise_message(*args, &block) 
-    #end
 
     #
     # Passes if actual is the same exact object as expected.

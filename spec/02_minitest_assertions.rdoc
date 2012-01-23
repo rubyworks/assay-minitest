@@ -181,8 +181,6 @@
 
   refute_raises(ArgumentError){ raise TypeError }
 
-== assert_raise_kind_of
-
 == assert_nothing_raised
 
   assert_nothing_raised{ 'good' }

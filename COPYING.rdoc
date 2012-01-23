@@ -1,12 +1,21 @@
-= COPYRIGHT NOTICES
+= COPYRIGHT
 
-== Assay MiniTest
+== NOTICES
 
-COPYRIGHT:: (C) 2012 Rubyworks. All rights reserved.
-LICENSE::   (L) BSD-2-Clause
-WEBSITE:    http://rubyworks.github.com/assay-testunit
+=== Assay MiniTest
 
-== BSD-2-Clause License
+Copyright:: (c) 2012 RubyWorks
+License::   (r) BSD-2-Clause
+Website::   http://rubyworks.github.com/assay-minitest
+
+
+== LICENSES
+
+=== BSD-2-Clause License
+
+    Assay MiniTest
+
+    Copyright (c) 2012 Rubyworks. All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:

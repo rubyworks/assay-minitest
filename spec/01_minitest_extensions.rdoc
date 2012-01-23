@@ -6,6 +6,18 @@
     include ::Assay::Extensions
   end
 
+== must_be
+
+  1.must_be(:<, 2)
+  1.must_be(:odd?)
+
+  expect ::ExecutionAssay do
+    1.wont_be(:<, 2)
+  end
+
+  1.wont_be(:>, 2)
+  1.wont_be(:even?)
+
 == must_equal
 
   1.must_equal(1)
@@ -13,6 +25,8 @@
   expect ::EqualAssay do
     1.must_equal(2)
   end
+
+  1.wont_equal(2)
 
 == TrueAssay
 
@@ -22,6 +36,8 @@
     false.must_be_true
   end
 
+  false.wont_be_true
+
 == must_be_false
 
   false.must_be_false
@@ -30,6 +46,8 @@
     true.must_be_false
   end
 
+  true.wont_be_false
+
 == must_be_nil
 
   nil.must_be_nil
@@ -37,6 +55,28 @@
   expect ::NilAssay do
     true.must_be_nil
   end
+
+  false.wont_be_nil
+
+== must_be_empty
+
+  [].must_be_empty
+
+  expect ::EmptyAssay do
+    [1].must_be_empty
+  end
+
+  [1].wont_be_empty
+
+== must_include
+
+  [1].must_include(1)
+
+  expect ::IncludeAssay do
+    [1].must_include(2)
+  end
+
+  [1].wont_include(2)
 
 == must_be_within_delta
 
@@ -130,6 +170,16 @@
 
   5.wont_satisfy{ |x| x < 3 }
 
+== must_send
+
+  5.must_send([:+, 1])
+
+  expect ::ExecutionAssay do
+    5.must_send([:upcase])
+  end
+
+  5.wont_send([:upcase])
+
 == must_throw
 
   procedure = lambda{ throw :foo }
@@ -141,4 +191,17 @@
   end
 
   procedure.wont_throw(:bar)
+
+== must_be_like
+
+The `#must_be_like` method is not a MiniText expectation, but we have thrown it
+in for gooe measure.
+
+  /a/.must_be_like('a')
+
+  expect ::LikeAssay do
+    'a'.must_be_like(10)
+  end
+
+  'a'.wont_be_like(10)
 
