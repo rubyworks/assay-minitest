@@ -1,4 +1,5 @@
-module Assay
+module Assay; end
+module Assay::MiniTest
 
   # This module provides extensions for MiniTest compatiblity.
   #
@@ -7,7 +8,7 @@ module Assay
   #
   # Compatability will improve with time.
   #
-  module MiniTestExtensions
+  module Extensions
 
     #
     #
@@ -15,9 +16,9 @@ module Assay
     #
     def must_be(operator, argument=nil, msg=nil)
       if argument
-        CompareAssay.assert(argument, self, operator, :message=>msg)
+        CompareAssay.assert!(argument, self, operator, :message=>msg)
       else
-        CompareAssay.assert(argument, self, :send, :message=>msg)
+        CompareAssay.assert!(argument, self, :send, :message=>msg)
       end
     end
 
@@ -28,7 +29,7 @@ module Assay
     # See {LikeAssay}.
     #
     def must_be_like(exp, msg=nil)
-      LikeAssay.assert(self, exp, :message=>msg, :backtrace=>caller)
+      LikeAssay.assert!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object is not like criterion using {CompareAssay}.
@@ -38,7 +39,7 @@ module Assay
     # See {LikeAssay}.
     #
     def wont_be_like(act, msg=nil)
-      LikeAssay.refute(self, exp, :message=>msg, :backtrace=>caller)
+      LikeAssay.refute!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if expected and actual are equal within delta tolerance.
@@ -48,7 +49,7 @@ module Assay
     # See {DeltaAssay}.
     #
     def must_be_within_delta(exp, delta, msg=nil)
-      WithinAssay.assert(self, exp, delta, :message=>msg, :backtrace=>caller)
+      WithinAssay.assert!(self, exp, delta, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if expected and actual are equal not within delta tolerance.
@@ -58,7 +59,7 @@ module Assay
     # See {WithinAssay}.
     #
     def wont_be_within_delta(exp, delta, msg=nil)
-      WithinAssay.refute(self, exp, delta, :message=>msg, :backtrace=>caller)
+      WithinAssay.refute!(self, exp, delta, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object is empty.
@@ -66,7 +67,7 @@ module Assay
     #   object.must_be_empty
     #
     def must_be_empty(msg=nil)
-      EmptyAssay.assert(self, :message=>msg, :backtrace=>caller)
+      EmptyAssay.assert!(self, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object is not empty.
@@ -74,7 +75,7 @@ module Assay
     #   object.wont_be_empty
     #
     def wont_be_empty(msg=nil)
-      EmptyAssay.refute(self, :message=>msg, :backtrace=>caller)
+      EmptyAssay.refute!(self, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if expected == +actual.
@@ -86,15 +87,15 @@ module Assay
     #   'MY STRING'.must_equal('my string'.upcase)
     #
     def must_equal(exp, msg=nil)
-      EqualityAssay.assert(self, exp, :message=>msg, :backtrace=>caller)
+      EqualAssay.assert!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if expected != actual
     #
     #  'some string'.wont_equal('some other string')
     #
-    def assert_not_equal(exp, msg=nil)
-       EqualityAssay.refute(self, :message=>msg, :backtrace=>caller)
+    def wont_equal(exp, msg=nil)
+       EqualAssay.refute!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if the block yields successfully.
@@ -102,7 +103,7 @@ module Assay
     #   proc.must_execute("Couldn't do the thing")
     #
     def must_execute(msg=nil)
-      ExecutionAssay.assert(:message=>msg, :backtrace=>caller, &self)
+      ExecutionAssay.assert!(:message=>msg, :backtrace=>caller, &self)
     end
 
     # Passes if the block does not yield successfully.
@@ -110,7 +111,7 @@ module Assay
     #   proc.wont_execute("Could do the thing")
     #
     def wont_execute(msg=nil)
-      ExecutionAssay.refute(:message=>msg, :backtrace=>caller, &self)
+      ExecutionAssay.refute!(:message=>msg, :backtrace=>caller, &self)
     end
 
     # Passes if the block yields successfully.
@@ -118,7 +119,7 @@ module Assay
     #   5.must_satisfy{ |x| x > 3 }
     #
     def must_satisfy(msg=nil, &block)
-      ExecutionAssay.assert(self, :message=>msg, :backtrace=>caller, &block)
+      ExecutionAssay.assert!(self, :message=>msg, :backtrace=>caller, &block)
     end
 
     # Passes if the block does not yield successfully.
@@ -126,13 +127,13 @@ module Assay
     #   5.wont_satisfy{ |x| x < 3 }
     #
     def wont_satisfy(msg=nil, &block)
-      ExecutionAssay.refute(self, :message=>msg, :backtrace=>caller, &block)
+      ExecutionAssay.refute!(self, :message=>msg, :backtrace=>caller, &block)
     end
 
     # Passed if object is +false+.
     #
     def must_be_false(msg=nil)
-      FalseAssay.assert(self, :message=>msg, :backtrace=>caller)
+      FalseAssay.assert!(self, :message=>msg, :backtrace=>caller)
     end
 
     # Passed if object is not +false+.
@@ -140,7 +141,7 @@ module Assay
     #   assert_not_false(false)
     #
     def wont_be_false(msg=nil)
-      FalseAssay.refute(self, :message=>msg, :backtrace=>caller)
+      FalseAssay.refute!(self, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if actual is the same exact object as expected.
@@ -148,7 +149,7 @@ module Assay
     #   object.must_be_same_as(object)
     #
     def must_be_same_as(exp, msg=nil)
-      IdentityAssay.assert(self, exp, :message=>msg, :backtrace=>caller)
+      IdentityAssay.assert!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if actual is not the same exact object as expected.
@@ -156,7 +157,7 @@ module Assay
     #   object.wont_be_same_as(other)
     #
     def wont_be_same_as(exp, msg=nil)
-      IdentityAssay.refute(self, exp, :message=>msg, :backtrace=>caller)
+      IdentityAssay.refute!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object is an instance of class.
@@ -164,7 +165,7 @@ module Assay
     #   'foo'.must_be_instance_of(String)
     #
     def must_be_instance_of(cls, msg=nil)
-      InstanceAssay.assert(self, cls, :message=>msg, :backtrace=>caller)
+      InstanceAssay.assert!(self, cls, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object is not an instance of class.
@@ -172,7 +173,7 @@ module Assay
     #   'foo'.wont_be_instance_of(Integer)
     #
     def wont_be_instance_of(cls, msg=nil)
-      InstanceAssay.refute(self, cls, :message=>msg, :backtrace=>caller)
+      InstanceAssay.refute!(self, cls, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object is a kind of class.
@@ -180,7 +181,7 @@ module Assay
     #   assert_kind_of(Object, 'foo')
     #
     def must_be_kind_of(cls, msg=nil)
-      KindAssay.assert(self, cls, :message=>msg, :backtrace=>caller)
+      KindAssay.assert!(self, cls, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object is not a kind of class.
@@ -188,7 +189,7 @@ module Assay
     #   assert_not_kind_of(Object, 'foo')
     #
     def wont_be_kind_of(cls, msg=nil)
-      KindAssay.refute(self, cls, :message=>msg, :backtrace=>caller)
+      KindAssay.refute!(self, cls, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object matches pattern using `#=~` method.
@@ -196,7 +197,7 @@ module Assay
     #   'one 2 three'.must_match(/two/)
     #
     def must_match(exp, msg=nil)
-      MatchAssay.assert(self, exp, :message=>msg, :backtrace=>caller)
+      MatchAssay.assert!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if object does not match pattern using `#=~` method.
@@ -204,13 +205,13 @@ module Assay
     #   'one 2 three'.wont_match(/two/)
     #
     def wont_match(exp, msg=nil)
-      MatchAssay.refute(self, exp, :message=>msg, :backtrace=>caller)
+      MatchAssay.refute!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
     # Passed if object is +nil+.
     #
     def must_be_nil(msg=nil)
-      NilAssay.assert(self, :message=>msg, :backtrace=>caller)
+      NilAssay.assert!(self, :message=>msg, :backtrace=>caller)
     end
 
     # Passed if object is not +nil+.
@@ -218,7 +219,7 @@ module Assay
     #   assert_not_nil(true)
     #
     def wont_be_nil(msg=nil)
-      NilAssay.refute(self, :message=>msg, :backtrace=>caller)
+      NilAssay.refute!(self, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if the procedure raises a given exception.
@@ -226,7 +227,7 @@ module Assay
     #   lambda{ raise 'Boom!!!' }.must_raise(RuntimeError)
     #
     def must_raise(exp, msg=nil, call=nil)
-      RaiseAssay.assert(exp, msg=nil, call=nil, &self)
+      RaiseAssay.assert!(exp, msg=nil, call=nil, &self)
     end
 
     # Passes if the procedure *does not* raise a given exceptions.
@@ -234,7 +235,7 @@ module Assay
     #   lambda{ raise 'Boom!!!' }.wont_raise(IOError)
     #
     def wont_raise(exp, msg=nil, call=nil)
-      RaiseAssay.refute(exp, msg, call, &self)
+      RaiseAssay.refute!(exp, msg, call, &self)
     end
 
     # Passes if +object+ respond_to? +methods+.
@@ -242,7 +243,7 @@ module Assay
     #   'bugbear'.must_respond_to(:slice)
     #
     def must_respond_to(method, msg=nil)
-      ResponseAssay.assert(self, method, :message=>msg, :backtrace=>caller)
+      RespondAssay.assert!(self, method, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if +object+ does not respond_to? +methods+.
@@ -250,7 +251,7 @@ module Assay
     #   'bugbear'.wont_respond_to(:slice)
     #
     def wont_respond_to(method, msg=nil)
-      ResponseAssay.refute(self, method, :message=>msg, :backtrace=>caller)
+      RespondAssay.refute!(self, method, :message=>msg, :backtrace=>caller)
     end
 
     # Passes if `criterion.eql?(actual)`.
@@ -262,7 +263,7 @@ module Assay
     #   'MY STRING'.must_be_equivalent_to('my string'.upcase)
     #
     def must_be_equivalent_to(criterion, msg=nil)
-      SameAssay.assert(self, criterion, :message=>msg, :backtrace=>caller)
+      EqualityAssay.assert!(self, criterion, :message=>msg, :backtrace=>caller)
     end
 
     alias_method :must_eql, :must_be_equivalent_to
@@ -272,7 +273,7 @@ module Assay
     #   'MY STRING'.wont_be_equivalent_to('some other string')
     #
     def wont_be_equivalent_to(criterion, msg=nil)
-      SameAssay.refute(self, criterion, :message=>msg, :backtrace=>caller)
+      EqualityAssay.refute!(self, criterion, :message=>msg, :backtrace=>caller)
     end
 
     alias_method :wont_eql, :wont_be_equivalent_to
@@ -284,7 +285,7 @@ module Assay
     #   end
     #
     def must_throw(sym, msg=nil)
-      ThrowAssay.assert(sym, :message=>msg, :backtrace=>caller, &self)
+      ThrowAssay.assert!(sym, :message=>msg, :backtrace=>caller, &self)
     end
 
     # Passes if the block throws expected_symbol
@@ -294,7 +295,7 @@ module Assay
     #   end
     #
     def wont_throw(sym, msg=nil)
-      ThrowAssay.refute(sym, :message=>msg, :backtrace=>caller, &self)
+      ThrowAssay.refute!(sym, :message=>msg, :backtrace=>caller, &self)
     end
 
     # Passed if object is +true+.
@@ -302,7 +303,7 @@ module Assay
     #   object.must_be_true
     #
     def must_be_true(msg=nil)
-      TrueAssay.assert(self, :message=>msg, :backtrace=>caller)
+      TrueAssay.assert!(self, :message=>msg, :backtrace=>caller)
     end
 
     #
@@ -311,28 +312,23 @@ module Assay
     #   object.wont_be_true
     #
     def wont_be_true(msg=nil)
-      TrueAssay.refute(self, :message=>msg, :backtrace=>caller)
+      TrueAssay.refute!(self, :message=>msg, :backtrace=>caller)
     end
 
     #
     # Passes if `self.include?(object)`.
     #
     def must_include(object, msg=nil)
-      IncludeAssay.assert(self, object, :message=>msg, :backtrace=>caller)
+      IncludeAssay.assert!(self, object, :message=>msg, :backtrace=>caller)
     end
 
     #
     # Passes if `self.include?(object)`.
     #
     def wont_include(object, msg=nil)
-      IncludeAssay.refute(self, object, :message=>msg, :backtrace=>caller)
+      IncludeAssay.refute!(self, object, :message=>msg, :backtrace=>caller)
     end
 
   end
 
-  module Extensions
-    include MiniTestExtensions
-  end
-
 end
-
