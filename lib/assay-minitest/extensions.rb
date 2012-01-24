@@ -68,7 +68,7 @@ module Assay::MiniTest
     #
     # @raise LikeAssay
     #
-    def wont_be_like(act, msg=nil)
+    def wont_be_like(exp, msg=nil)
       LikeAssay.refute!(self, exp, :message=>msg, :backtrace=>caller)
     end
 
