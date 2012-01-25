@@ -242,7 +242,7 @@ module Assay::MiniTest
     end
 
     #
-    # Passed if object is +nil+.
+    # Passes if object is +nil+.
     #
     #   assert_nil(nil)
     #
@@ -251,12 +251,56 @@ module Assay::MiniTest
     end
 
     #
-    # Passed if object is not +nil+.
+    # Passes if object is not +nil+.
     #
     #   refute_nil(true)
     #
     def refute_nil(exp, msg=nil)
       NilAssay.refute!(exp, :message=>msg, :backtrace=>caller)
+    end
+
+    # 
+    # Passes if a block outputs matching test to `stdout` or `staderr`.
+    #
+    # This does not work _exactly_ like the original MiniTest assertion in
+    # that it is an *and* condition between the two stdout and stderr, whereas
+    # the original is and *or* condition.
+    #
+    # Note that this assertion translates into two separate underlying assertions,
+    # so counts for it may be double of what one might expect.
+    #
+    def assert_output(stdout=nil, stderr=nil, &block)
+      StdoutAssay.assert!(stdout, &block) if stdout
+      StderrAssay.assert!(stderr, &block) if stderr
+    end
+
+    #
+    # Passes if a block outputs matching test to `stdout` or `staderr`.
+    #
+    # This does not work _exactly_ like the original MiniTest assertion in
+    # that it is an *and* condition between the two stdout and stderr, whereas
+    # the original is and *or* condition.
+    #
+    # Note that this assertion translates into two separate underlying assertions,
+    # so counts for it may be double of what one might expect.
+    #
+    def refute_output(stdout=nil, stderr=nil, &block)
+      StdoutAssay.refute!(stdout, &block) if stdout
+      StderrAssay.refute!(stderr, &block) if stderr
+    end
+
+    #
+    # Like {#assert_output} but ensures no output.
+    #
+    def assert_silent(&block)
+      OutputAssay.assert!('', &block)
+    end
+
+    #
+    # Like {#refute_output} but ensures any output at all.
+    #
+    def refute_silent(&block)
+      OutputAssay.refute!('', &block)
     end
 
     #
@@ -372,7 +416,7 @@ module Assay::MiniTest
     #   end
     #
     def assert_nothing_raised(msg=nil, &block)
-      RaiseAssay.refute!(Exception, :message=>msg, :backtrace=>caller, &block)
+      RescueAssay.refute!(Exception, :message=>msg, :backtrace=>caller, &block)
     end
 
     #
@@ -383,7 +427,7 @@ module Assay::MiniTest
     #   end
     #
     def refute_nothing_raised(msg=nil, &block)
-      RaiseAssay.assert!(Exception, :message=>msg, :backtrace=>caller, &block)
+      RescueAssay.assert!(Exception, :message=>msg, :backtrace=>caller, &block)
     end
 
     #

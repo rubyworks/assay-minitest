@@ -185,7 +185,7 @@
 
   assert_nothing_raised{ 'good' }
 
-  expect ::RaiseAssay do
+  expect ::RescueAssay do
     assert_nothing_raised{ raise }
   end
 
@@ -224,6 +224,18 @@
   assert_predicate(10, :even?)
 
   refute_predicate(10, :odd?)
+
+== assert_output
+
+  assert_output('this'){ puts 'this' }
+
+  refute_output('this'){ puts 'that' }
+
+== assert_silent
+
+  assert_silent{ nil }
+
+  refute_silent{ puts 'that' }
 
 == assert_alike
 
