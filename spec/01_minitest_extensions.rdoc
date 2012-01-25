@@ -192,6 +192,16 @@
 
   procedure.wont_throw(:bar)
 
+== must_output
+
+  procedure = lambda{ puts "fun!" }
+
+  procedure.must_output('fun!')
+
+  expect ::OutputAssay do
+    procedure.must_output('not!')
+  end
+
 == must_be_like
 
 The `#must_be_like` method is not a MiniText expectation, but we have thrown it
