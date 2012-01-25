@@ -49,7 +49,6 @@ module Assay::MiniTest
       end
     end
   
-
     #
     # Passes if object is like criterion.
     #
@@ -456,6 +455,18 @@ module Assay::MiniTest
     #
     def wont_include(object, msg=nil)
       IncludeAssay.refute!(self, object, :message=>msg, :backtrace=>caller)
+    end
+
+    #
+    # Passes if output matches +pattern+.
+    #
+    # @example
+    #   proc{ puts "fun!" }.must_output('fun!')
+    #
+    # @raise OutputAssay
+    #
+    def must_output(pattern, msg=nil)
+      OutputAssay.assert!(pattern, :message=>msg, :backtrace=>caller, &self)
     end
 
   end
