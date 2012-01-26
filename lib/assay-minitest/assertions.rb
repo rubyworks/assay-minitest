@@ -270,8 +270,8 @@ module Assay::MiniTest
     # so counts for it may be double of what one might expect.
     #
     def assert_output(stdout=nil, stderr=nil, &block)
-      StdoutAssay.assert!(stdout, &block) if stdout
-      StderrAssay.assert!(stderr, &block) if stderr
+      StdoutAssay.assert!(stdout, :backtrace=>caller, &block) if stdout
+      StderrAssay.assert!(stderr, :backtrace=>caller, &block) if stderr
     end
 
     #
@@ -285,22 +285,22 @@ module Assay::MiniTest
     # so counts for it may be double of what one might expect.
     #
     def refute_output(stdout=nil, stderr=nil, &block)
-      StdoutAssay.refute!(stdout, &block) if stdout
-      StderrAssay.refute!(stderr, &block) if stderr
+      StdoutAssay.refute!(stdout, :backtrace=>caller, &block) if stdout
+      StderrAssay.refute!(stderr, :backtrace=>caller, &block) if stderr
     end
 
     #
     # Like {#assert_output} but ensures no output.
     #
-    def assert_silent(&block)
-      OutputAssay.assert!('', &block)
+    def assert_silent(msg=nil, &block)
+      SilentAssay.assert!(:message=>msg, :backtrace=>caller, &block)
     end
 
     #
-    # Like {#refute_output} but ensures any output at all.
+    # Like {#refute_output} but ensures some output.
     #
-    def refute_silent(&block)
-      OutputAssay.refute!('', &block)
+    def refute_silent(msg=nil, &block)
+      SilentAssay.refute!(:message=>msg, :backtrace=>caller, &block)
     end
 
     #
@@ -308,8 +308,8 @@ module Assay::MiniTest
     #
     #   assert_predicate(10, :even?)
     #
-    def assert_predicate(object, predicate, message = nil) 
-      ExecutionAssay.assert!(:message=>message) do
+    def assert_predicate(object, predicate, message=nil) 
+      ExecutionAssay.assert!(:message=>message, :backtrace=>caller) do
         object.__send__(predicate)
       end
     end
@@ -319,8 +319,8 @@ module Assay::MiniTest
     #
     #   refute_predicate(10, :odd?)
     #
-    def refute_predicate(object, predicate, message = nil) 
-      ExecutionAssay.refute!(:message=>message) do
+    def refute_predicate(object, predicate, message=nil) 
+      ExecutionAssay.refute!(:message=>message, :backtrace=>caller) do
         object.__send__(predicate)
       end
     end
