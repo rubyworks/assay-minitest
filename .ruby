@@ -40,13 +40,13 @@ summary: MiniTest on Assay
 title: Assay MiniTest
 version: 0.1.0
 name: assay-minitest
-description: ! 'Assay MiniTest defines a set of MiniTest-compatible assertion methods
-  which
+description: ! 'Assay MiniTest defines a set of MiniTest-compatible assertion and
+  extension
 
-  depend on Assay''s assertion classes. This allows developers to change
+  method which seemlessly delegate on Assay assertions. This allows developers
 
-  test frameworks without having to change a slew of previously
+  to change test frameworks without having to completely rewrite a slew of
 
-  defined assertions.'
+  previously written MiniTest-based tests and/or sepcifications.'
 organization: Rubyworks
-date: '2012-01-18'
+date: '2012-01-26'
