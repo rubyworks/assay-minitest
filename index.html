@@ -19,13 +19,19 @@
     a:hover { text-decoration: underline; }
 
     #nav { text-align: right; padding: 10px 30px; color: #333; font-weight: bold; }
-    #nav a { font-size: 0.9em; color: #333; font-weight: bold; }
+    #nav a { font-size: 0.9em; color: #333; font-weight: bold; color: #08e; }
     #nav a:hover { color: yellow; }
+
     #main { margin: 0 auto; max-width: 760px; }
+
+    #header { text-shadow: 1px 1px 3px #08e; }
+    #header h1 { margin-bottom: 0; padding-bottom: 10px; font-size: 64px; }
+    #header h2 { margin: 10px 0 30px 0; padding-bottom: 10px; font-size: 22px; color: #555; font-style: italic; }
+
     #readme { padding: 0.5em 2.5em 2em 2.5em; line-height: 1.7em; font-size: 1.2em; color: #333; }
     #readme p { text-align: justify; padding: 0.25em 0; font-weight: normal; }
-    #readme h1 { margin-bottom: 0; padding-bottom: 10px; font-size: 64px; }
-    #readme h2 { margin: 10px 0 30px 0; padding-bottom: 10px; font-size: 22px; color: #555; font-style: italic; }
+    #readme a { color: #08e; }
+
     #footer { margin-top: 0; padding: 30px 0; text-align: center; }
 
     #rubyworks{ position: fixed; bottom: 0; right: 3px; padding: 0; opacity: 0.2; }
@@ -44,27 +50,26 @@
   </div>
 
   <div id="readme">
-    <h1>Assay MiniTest</h1>
-    <h2>MiniTest Assertions on top of Assay</h2>
- 
-    <p>Assay MiniTest is a compatibility grammar for the <a href="http://rubyworks.github.com/assay">Assay</a>
-       test assertions framework.</p>
+    <div id="header">
+      <h1>Assay MiniTest</h1>
+      <h2>MiniTest Assertions on top of Assay</h2>
+    </div>
 
-    <p>Assay defines a set of reusable assertion classes in the same way that
-       <a href="http://ruby-lang.org">Ruby</a> defines exceptions.</p>
-
-    <p>Assay MiniTest provides a full set of MiniTest compatible assertion 
+    <p>Assay MiniTest is a <i>compatibility grammar</i> for the <a href="http://rubyworks.github.com/assay">Assay</a>
+       test assertions framework. It provides a full set of MiniTest compatible assertion 
        and extension methods which translate seemlessly into Assay assertions.</p>
 
     <p>Assay MiniTest is ideal for transitioning to new test frameworks without having
        to completely rewrite MiniTest-based tests.</p>
 
+
     <p>Learn more about Assay MiniTest by reading the <a href="hhttp://rubydoc.info/gems/assay-minitest/frames">API</a>
        and <a href="http://demos.html">QED</a> documentation.</p>
 
-    <p>Learn more about Assay itself by visiting its <a href="http://rubyworks.github.com/assay">website</a>.</p>
 
-    <p>And remember the three rules of software quality: "Test, Test and Test!"</p>
+    <p><i>What is Assay?</i> Assay defines a set of reusable assertion classes in the same way that
+       <a href="http://ruby-lang.org">Ruby</a> defines exceptions.
+       You can learn more about Assay by visiting its <a href="http://rubyworks.github.com/assay">website</a>.</p>
   </div>
 
   <div id="footer">
