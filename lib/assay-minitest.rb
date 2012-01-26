@@ -11,3 +11,8 @@ module Assay::Extensions
   include Assay::MiniTest::Extensions
 end
 
+class Object
+  # should we be doing this here?
+  include Assay::Extensions
+end
+
