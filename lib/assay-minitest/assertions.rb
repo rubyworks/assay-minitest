@@ -131,7 +131,7 @@ module Assay::MiniTest
     end
 
     #
-    # Passes if expected and actual are equal within delta tolerance.
+    # Passes if expected and actual are equal within absolute delta.
     #
     #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
     #
@@ -140,7 +140,7 @@ module Assay::MiniTest
     end
 
     #
-    # Passes if expected and actual are equal not within delta tolerance.
+    # Passes if expected and actual are NOT equal within absolute delta.
     #
     #   refute_in_delta 0.05, (50000.0 / 10**6), 0.00001
     #
@@ -149,19 +149,19 @@ module Assay::MiniTest
     end
 
     #
-    # Passes if `expected_float` and `actual_float` are within `epsilon`.
+    # Passes if expected and actual are equal within relative `epsilon`.
     #
     def assert_in_epsilon(exp, act, epsilon=0.001, message=nil) 
-      delta = [exp, act].min * epsilon
-      WithinAssay.assert!(act, exp, delta, :message=>message, :backtrace=>caller)
+      #delta = [exp, act].min * epsilon
+      CloseAssay.assert!(act, exp, epsilon, :message=>message, :backtrace=>caller)
     end
 
     #
-    # Passes if `expected_float` and `actual_float` are NOT within `epsilon`.
+    # Passes if expected and actual are NOT equal within relative `epsilon`.
     #
     def refute_in_epsilon(exp, act, epsilon=0.001, message=nil)
-      delta = [exp, act].min * epsilon
-      WithinAssay.refute!(act, exp, delta, :message=>message, :backtrace=>caller)
+      #delta = [exp, act].min * epsilon
+      CloseAssay.refute!(act, exp, epsilon, :message=>message, :backtrace=>caller)
     end
 
     #

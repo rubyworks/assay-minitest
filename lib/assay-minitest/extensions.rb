@@ -72,9 +72,9 @@ module Assay::MiniTest
     end
 
     #
-    # Passes if expected and actual are equal within delta tolerance.
+    # Passes if expected and actual are equal within absolute delta tolerance.
     #
-    #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
+    #   0.05.must_be_within_delta (50000.0 / 10**6), 0.00001
     #
     # @raise WithinAssay
     #
@@ -83,14 +83,36 @@ module Assay::MiniTest
     end
 
     #
-    # Passes if expected and actual are equal not within delta tolerance.
+    # Passes if expected and actual are NOT equal within absolute delta tolerance.
     #
-    #   assert_not_in_delta 0.05, (50000.0 / 10**6), 0.00001
+    #   0.05.wont_be_within_delta (50000.0 / 10**6), 0.00001
     #
     # @raise WithinAssay
     #
     def wont_be_within_delta(exp, delta, msg=nil)
       WithinAssay.refute!(self, exp, delta, :message=>msg, :backtrace=>caller)
+    end
+
+    #
+    # Passes if expected and actual are equal within relative epsilon tolerance.
+    #
+    #   0.05.must_be_within_epsilon (50000.0 / 10**6), 0.00001
+    #
+    # @raise CloseAssay
+    #
+    def must_be_within_epsilon(exp, epsilon, msg=nil)
+      CloseAssay.assert!(self, exp, epsilon, :message=>msg, :backtrace=>caller)
+    end
+
+    #
+    # Passes if expected and actual are NOT equal within relative epsilon tolerance.
+    #
+    #   0.05.wont_be_within_epsilon (50000.0 / 10**6), 0.00001
+    #
+    # @raise CloseAssay
+    #
+    def wont_be_within_epsilon(exp, epsilon, msg=nil)
+      WithinAssay.refute!(self, exp, epsilon, :message=>msg, :backtrace=>caller)
     end
 
     #
