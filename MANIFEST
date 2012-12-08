@@ -1,15 +1,16 @@
-#!mast .ruby .yardopts bin demo lib spec test [A-Z]*.*
-.ruby
+#!mast .index .yardopts bin demo lib spec test [A-Z]*.*
+.index
+demo/01_minitest_extensions.rdoc
+demo/02_minitest_assertions.rdoc
+demo/applique/helper.rb
+demo/applique/setup.rb
 lib/assay/minitest.rb
 lib/assay-minitest/assertions.rb
 lib/assay-minitest/extensions.rb
 lib/assay-minitest.rb
 lib/assay-minitest.yml
-spec/01_minitest_extensions.rdoc
-spec/02_minitest_assertions.rdoc
-spec/applique/helper.rb
-spec/applique/setup.rb
-HISTORY.rdoc
-README.rdoc
+HISTORY.md
+README.md
 DEMOS.md
 COPYING.rdoc
+Config.rb
