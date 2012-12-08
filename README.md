@@ -7,27 +7,25 @@
 
 ## DESCRIPTION
 
-Assay MiniTest is a compatability layer for using MiniTest's test or spec
-assertion notations with the {Assay}[http://rubyworks.github.com/assay]
-assertions framework.
-
-Assay MiniTest defines a set of MiniTest-compatible assertion methods
-which depend on Assay's assertion classes. This allows developers to
+Assay MiniTest is a compatability layer, built on top of [Assay]([http://rubyworks.github.com/assay),
+that makes it possible for developers to use MiniTest compatible assertions
+with any BRASS-compliant test framework. This allows developers to
 change test frameworks without having to change a slew of previously
 defined assertions calls.
 
-Assay defines assertions in the same way that Ruby defines exceptions.
-An assertion is nothing more that an extended Exception class.
-Assay provides a complete set of these assertion classes for all
-common assertion needs. See {Assay}[http://rubyworks.github.com/assay]
+Assay MiniTest works by defining MiniTest-compatible assertion methods
+which in turn call on Assay's assertion classes. Assay defines assertions
+in the same way that Ruby defines exceptions. An assertion is nothing more
+that an extended Exception class. Assay provides a complete set of these
+assertion classes for all common assertion needs. See [Assay](http://rubyworks.github.com/assay)
 project for more information on this foundational library.
 
 
 ## SYNOPSIS
 
-Simply require the `assay/minitest` script, and include the `Assay::Matchers`
-mixin module into your tests wherever your test framework requires it (which 
-may be as simple as the toplevel namespace).
+Simply require the `assay/minitest` script, and include the `Assay::MiniTest::Assertions` 
+or `Assay::Assertions` mixin module into your tests wherever your test framework
+requires it (which  may be as simple as the toplevel namespace).
 
     require 'assay/minitest'
 
@@ -39,7 +37,8 @@ Now assertions can be made just as if you were using MiniTest.
 
     refute_kind_of(String, 10)
 
-Alternately, you can use MiniTest's expectations notation.
+Alternately, you can use MiniTest's expectations notation via `Assay::MiniTest::Extensions` 
+or just `Assay::Extensions`.
 
     include Assay::Extensions
 
@@ -50,7 +49,7 @@ Alternately, you can use MiniTest's expectations notation.
 
 ## LIMITATIONS
 
-Note that compatibility is not 100%, yet, though it is fairly close.
+Note that compatibility is not 100%, though it is fairly close.
 Compatibilty will improve with future releases. Please feel _obligated_
 to submit a patch, if you need a missing a feature ;)
 
