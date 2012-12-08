@@ -1,0 +1,44 @@
+---
+name:
+  assay-minitest
+
+version:
+  0.1.0
+
+title:
+  Assay MiniTest
+
+summary:
+  MiniTest on Assay
+
+description:
+  Assay MiniTest defines a set of MiniTest-compatible assertion and extension
+  methods which seemlessly delegate to Assay assertions. This allows developers
+  to change test frameworks without having to completely rewrite a slew of
+  previously written MiniTest-based tests and/or sepcifications.
+
+resources:
+  home: http://rubyworks.github.com/assay-minitest
+  docs: http://rubydoc.info/gems/assay-minitest
+  code: http://github.com/rubyworks/assay-minitest
+  mail: http://groups.google.com/groups/rubyworks-mailinglist
+
+requirements:
+  - assay
+  - detroit (build)
+  - qed     (test)
+
+repositories:
+  upstream: git@github.com:rubyworks/assay-minitest.git
+
+organizations:
+  - Rubyworks
+
+authors:
+  - Thomas Sawyer <transfire@gmail.com>
+
+copyrights:
+  - (c) 2012 Thomas Sawyer (BSD-2-Clause)
+
+created:
+  2012-01-18

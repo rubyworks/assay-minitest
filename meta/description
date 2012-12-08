@@ -1,4 +1,0 @@
-Assay MiniTest defines a set of MiniTest-compatible assertion and extension
-method which seemlessly delegate on Assay assertions. This allows developers
-to change test frameworks without having to completely rewrite a slew of
-previously written MiniTest-based tests and/or sepcifications.
