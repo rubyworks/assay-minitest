@@ -1,12 +1,11 @@
 #!/usr/bin/env ruby
 
 #
-# Setup QED.
+# Code Coverage
 #
-qed do
+profile :cov do
 
-  # Create coverage report.
-  profile :cov do
+  config :qed do
     require 'simplecov'
     SimpleCov.start do
       coverage_dir 'log/coverage'
